@@ -1,4 +1,5 @@
 import React, { Children } from 'react'
+import { Textarea, Input } from '@chakra-ui/react'
 import {
   applyChangeToValue,
   countSuggestions,
@@ -237,11 +238,11 @@ class MentionsInput extends React.Component {
   }
 
   renderInput = (props) => {
-    return <input type="text" ref={this.setInputRef} {...props} />
+    return <Input type="text" ref={this.setInputRef} {...props} />
   }
 
   renderTextarea = (props) => {
-    return <textarea ref={this.setInputRef} {...props} />
+    return <Textarea borderRadius="3xl" maxHeight="130px" paddingInlineEnd={"calc(1rem + 30px)"} lineHeight={'inherit'} ref={this.setInputRef} {...props} />
   }
 
   setInputRef = (el) => {
@@ -307,7 +308,8 @@ class MentionsInput extends React.Component {
     return (
       <Highlighter
         containerRef={this.setHighlighterElement}
-        style={style('highlighter')}
+        // style={style('highlighter')}
+        style={{...style('highlighter'), paddingTop: '8px', paddingBottom: '8px', paddingInlineStart: '1rem', maxHeight: '130px', paddingInlineEnd: 'calc(1rem + 30px)'}}
         value={value}
         singleLine={singleLine}
         selectionStart={selectionStart}
@@ -324,6 +326,7 @@ class MentionsInput extends React.Component {
   }
 
   handleCaretPositionChange = (position) => {
+    
     this.setState({ caretPosition: position })
   }
 
@@ -1075,7 +1078,7 @@ const styled = defaultStyle(
       input: {
         height: '100%',
         bottom: 0,
-        overflow: 'hidden',
+        overflow: 'auto',
         resize: 'none',
 
         // fix weird textarea padding in mobile Safari (see: http://stackoverflow.com/questions/6890149/remove-3-pixels-in-ios-webkit-textarea)
